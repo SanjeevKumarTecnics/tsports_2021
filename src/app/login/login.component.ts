@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,NgModule  } from '@angular/core';
 // import { SocialAuthService } from "angularx-social-login";
 // import { SocialUser } from "angularx-social-login";
 // import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import {ApiService} from '../Services/api.service'
+import {ApiService} from '../Services/api.service';
+// import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import {ApiService} from '../Services/api.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  
+
   user:any;
   loggedIn:boolean = false;
   
@@ -58,9 +59,12 @@ export class LoginComponent implements OnInit {
     // }
 
   }
-  signInWithGoogle(): void {
+  signInWithGoogle(emailid:string): void {
     // this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    this.storage.store('isLogedIn', true);
-    this.router.navigate(['/fantacy-team']);
+    if(emailid.trim() != ''){
+      this.storage.store('isLogedIn', true);
+      this.storage.store('email',emailid);
+      this.router.navigate(['/fantacy-team']);
+    }
   }
 }

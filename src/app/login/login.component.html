@@ -1,7 +1,10 @@
 <div class="login">
   <img src="../../assets/images/tslogo.png" class="tslogo">
   <img src="../../assets/images/champ.png" class="champlogo">
-  <button type="button" class="gbutton" (click)="signInWithGoogle()">Login</button>
+  <div style="text-align: center; margin-top: 120px;">
+    <input type="text" id="emailid" name="emailid" #emailid>
+  </div>
+  <button type="button" class="gbutton" (click)="signInWithGoogle(emailid.value)">Login</button>
 </div>
 
 
