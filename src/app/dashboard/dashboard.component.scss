@@ -1,0 +1,52 @@
+.myCard{
+    margin: 10px;
+    border-top: 2px solid #237298;
+    // display: flex;
+    // width: 100%;
+}
+.scoreBord{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+.myCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.upcoming_matches{
+    img{
+        width: 70px;
+        height: 70px;
+    }
+    h3{
+        margin-bottom: 10px;
+    }
+}
+.my_team{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f1f1f1;
+    img{
+        width: 50px;
+        height: 50px;
+    }
+    .player_info{
+        img{
+            margin-right: 10px;
+        }
+    }
+    .player_role{
+        display: flex;
+        align-items: center;
+        span{
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px 10px;
+            margin-left: 5px;
+        }
+    }
+}

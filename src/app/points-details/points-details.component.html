@@ -1,0 +1,103 @@
+<mat-drawer-container autosize style="height: 100vh;">
+    <mat-drawer #drawer class="sidenav-items" mode="over" position="end">
+        <app-signout></app-signout>
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <div class="icon">
+            <button mat-icon-button class="menu_icon" mat-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+       <!-- ponts details data -->
+       <div class="create-team">
+            <div class="container">
+                <div class="create-team-inner">
+                    <img src="../../assets/images/logonew2-black.png" class="logo">
+                    <div class="fantasy" >
+                        <mat-icon class="back_icon" routerLink="/fantasy-team">keyboard_backspace</mat-icon>
+                        <h3>Match Point Detils</h3>
+                    </div>  
+                    <div class="points_tables">
+                        <table class="table" border="1">
+                            <thead>
+                                <tr style="background-color: #1b1e6d; color:#fff;">
+                                    <th>Points Type </th>
+                                    <th>Description Points</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Man of the match</td>
+                                    <td>3 X Points</td>
+                                </tr>
+                                <tr>
+                                    <td>Captain</td>
+                                    <td>2 X Points</td>
+                                </tr>
+                                <tr>
+                                    <td>Vice Captain</td>
+                                    <td>1.5 X Points</td>
+                                </tr>
+                                <tr>
+                                    <td>Announced</td>
+                                    <td>Points/Run 1</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/Four 1</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/Six 2</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/30 runs 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/50 runs 10</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/100 runs 20</td>
+                                </tr>
+                                <tr>
+                                    <td>Announced</td>
+                                    <td>Points/Catch 25</td>
+                                </tr>
+                                <tr>
+                                    <td>Announced</td>
+                                    <td>Points/Stump 25</td>
+                                </tr>
+                                <tr>
+                                    <td>Announced </td>
+                                    <td>Points/Wicket 25</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/2 Wickets 5</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/3 Wickets 10</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/4 Wickets 15</td>
+                                </tr>
+                                <tr>
+                                    <td>Bonus</td>
+                                    <td>Points/5 Wickets 20</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>   
+            </div>
+        </div>
+       <!-- ponts details data -->
+    </div>
+</mat-drawer-container>
+

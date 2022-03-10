@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Select Captain</h2>
+<mat-dialog-content>
+    <div *ngFor = "let player of selectedPlayers; let i=index;"   >
+        <div class="players">
+            <div style="display: flex; align-items: center;width: 150px;">
+                <img src="../../assets/images/1.png" alt="" class="player_img">
+                <p class="player_name">{{player.name}}</p>
+            </div>
+            <p>C <input type="checkbox" disabled={{player.disabledC}} (click)="selectedCaptain(player,i,$event)"></p>
+            <p>VC <input type="checkbox" disabled={{player.disabledVC}} (click)="selectedVoiceCaptain(player,i,$event)"></p>
+            <p>MM <input type="checkbox" disabled={{player.disabledMM}} (click)="selectedMM(player,i,$event)"></p>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="btn btn-danger">Cancel</button>
+    <button 
+        mat-button 
+        mat-dialog-close  
+        cdkFocusInitial 
+        [ngClass]="{'btn-primary':(setC && setVC && setMM) == true,'btn-secondary':(setC && setVC && setMM) == false}" 
+        class="btn" 
+        (click)="teamPreview()" 
+        [disabled]="!(setC && setVC && setMM)" 
+    >
+        Team Preview
+    </button>
+</mat-dialog-actions>
+
+

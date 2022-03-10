@@ -1,0 +1,54 @@
+<mat-drawer-container autosize style="height: 100vh;">
+    <mat-drawer #drawer class="sidenav-items" mode="over" position="end">
+        <app-signout></app-signout>
+    </mat-drawer>
+    <div class="sidenav-content">
+        <div class="icon">
+            <button mat-icon-button class="menu_icon" mat-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+        <!-- dashboard data -->
+        <mat-tab-group>
+            <mat-tab label="Your Team">
+                <div *ngFor = "let player of yourTeam"> 
+                    <div class="my_team">
+                        <div class="player_info">
+                            <img src="../../assets/images/1.png" alt="">
+                            <span>{{player.name}}</span>
+                        </div>
+                        <div class="player_role">
+                            <span>{{player.category}}</span>
+                            <span *ngIf = "player.role == 'C' || player.role == 'VC'">{{player.role}}</span>
+                            <span *ngIf = "player.manRole == 'MM'">{{player.manRole}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </mat-tab>
+            <mat-tab label="Upcoming Match" >
+                <div class="upcoming_matches">
+                    <div *ngFor = "let match of upcomingMatches">
+                        <mat-card class="myCard">
+                            <div>
+                                <h3>{{match.versus_description}}</h3>
+                                <p>Stadium : {{match.stadium}}</p>
+                                <p>Date : {{match.date}} ( <strong> {{match.day}} </strong> )</p>
+                                <p>Time : {{match.time}}</p>
+                            </div>
+                            <div>   
+                                {{match.teamA.title}}
+                                <img src="{{match.teamA.team_logo}}" alt="">
+                                V/S
+                                <img src="{{match.teamB.team_logo}}" alt="">
+                                {{match.teamB.title}}
+                            </div>
+                        </mat-card>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</mat-drawer-container>
+
+

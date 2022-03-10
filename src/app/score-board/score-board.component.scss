@@ -1,0 +1,128 @@
+mat-card{
+    margin: 10px;
+}
+.yesterday_match{
+    padding: 15px;
+    padding-top: 30px;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    img.vs_img{
+        width: 25px;
+        height: 25px;
+    }
+    img{
+        width: 50px;
+        height: 50px;
+    }
+    .team_logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .team_logo > p, .team_logo span{
+        margin-right: 10px;
+    }
+    p{
+        margin: 0px;
+    }
+    h3{
+        margin-bottom: 10px;
+    }
+}
+.yesterday_match > div{
+    min-width: 50%;
+}
+
+.yesterday_match > div.full_width{
+    min-width: 100%;
+}
+
+.participators{
+    padding: 15px;
+    padding-top: 10px;
+    text-align: left;
+    h2{
+        margin-bottom: 5px;
+        text-align: left;
+    }
+    mat-card{
+        margin: 0px;
+        min-height: 300px;
+    }
+    .table{
+        border-collapse: collapse;
+        td{
+            padding: 8px 10px;
+            text-align: left;
+            &:first-child{
+                width: 20px;
+            }
+            &:last-child{
+                text-align: right;
+            }
+        }
+        tr{
+            &:nth-child(even){
+                background-color: #f3f3f3;
+            }
+        }
+    }
+}
+
+.completed_match{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3{
+        margin-bottom: 10px;
+    }
+    img{
+        width: 50px;
+        height: 50px;
+    }
+    img.vs_img{
+        width: 25px;
+        height: 25px;
+    }
+    .team_logo > span{
+        margin-left: 10px;
+    }
+    &:hover{
+        background-color: #e9f3ff;
+    }
+}
+
+.my_matches{
+    color: #7d7d7d;
+    strong.score{
+        color: #000;
+    }
+}
+
+.overall_scores_table{
+    width: 500px;
+    border: 1px solid rgb(226, 226, 226);
+    td{
+        padding: 4px 10px;
+       &:first-child{
+           padding-right: 10px;
+           width: 20px;
+       } 
+       &:nth-child(2){
+           padding-left: 0px;
+           text-align: left;
+       }
+       &:last-child{
+           text-align: right;
+           padding-right: 25px;
+       }
+    }
+    tr{
+        &:nth-child(odd){
+            background-color: #f3f3f3;
+        }
+    }
+}

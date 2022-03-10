@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Team Preview</h2>
+<mat-dialog-content>
+    <div *ngFor = "let player of teamPreview;" >
+        <div class="players">
+            <div style="display: flex; align-items: center;">
+                <img class="player_img" src="../../assets/images/1.png" alt="">
+                 <p class="player_name">{{player.name}}</p>
+            </div>
+            <p class="player_category">
+                <span>{{player.category}}</span>
+                <span *ngIf = "player.manRole">MM</span>
+                <span *ngIf = "player.role === 'C'">C</span>
+                <span *ngIf = "player.role === 'VC'">VC</span>
+            </p>
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+<button mat-button mat-dialog-close  cdkFocusInitial class="btn btn-danger" >Close</button>
+<button mat-button mat-dialog-close  cdkFocusInitial class="btn btn-primary" (click)="pushData()" >Submit</button>
+</mat-dialog-actions>

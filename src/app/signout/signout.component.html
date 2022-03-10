@@ -1,0 +1,13 @@
+<div class="personal_details">
+    <p style="text-align: center;"><img src="{{userPhoto}}" alt="" class="user_img"></p>
+    <p class="user_name">{{userEamil}}</p>
+</div>
+
+<p class="menu_title">Menu</p>
+<ul class="menu">
+    <li><a routerLink="/fantasy-team" routerLinkActive="active">Fantasy Team</a></li>
+    <li><a routerLink="/scoreboard" routerLinkActive="active">Scoreboard</a></li>
+    <li><a routerLink="/pointsdetails" routerLinkActive="active">Points Details</a></li>
+</ul>
+<p style="text-align: center;"><button type="button" class="btn btn-danger" (click)="signOut()">Sign Out</button></p>
+
