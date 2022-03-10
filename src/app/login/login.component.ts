@@ -62,9 +62,20 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(emailid:string): void {
     // this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     if(emailid.trim() != ''){
-      this.storage.store('isLogedIn', true);
-      this.storage.store('email',emailid);
-      this.router.navigate(['/fantacy-team']);
+
+      this.apiService.getUserIdByMail(emailid).then(res => {
+        var userId = res.id;
+        this.storage.store('userId',userId);
+        this.apiService.userId = userId;
+        if(!userId){
+          alert("your not autorised person,please contact admin");
+          this.apiService.signOut();
+        }else{
+          this.storage.store('isLogedIn', true);
+          this.storage.store('email',emailid);
+          this.router.navigate(['/fantacy-team']);
+        }
+      });
     }
   }
 }
