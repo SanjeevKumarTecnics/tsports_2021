@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// import { SocialAuthService } from "angularx-social-login";
+import { SocialAuthService } from "angularx-social-login";
 import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import {ApiService} from '../Services/api.service'
 
@@ -15,9 +15,7 @@ export class SignoutComponent implements OnInit {
 
   userEamil:any;
 
-  constructor(
-    // private authService: SocialAuthService,
-     private storage:LocalStorageService,
+  constructor(private authService: SocialAuthService, private storage:LocalStorageService,
      private router:Router,
      private apiService:ApiService) { }
 

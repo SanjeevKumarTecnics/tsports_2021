@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-// import { SocialAuthService } from 'angularx-social-login';
+import { SocialAuthService } from 'angularx-social-login';
 import * as CryptoTS from 'crypto-ts';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private storage: LocalStorageService,
-    // private authService: SocialAuthService,
+    private authService: SocialAuthService,
     private router: Router
   ) {}
 
@@ -182,7 +182,7 @@ export class ApiService {
 
   // for sign out
   signOut(): void {
-    // this.authService.signOut();
+    this.authService.signOut();
     this.router.navigate(['/login']);
     this.storage.clear('isLogedIn');
     this.storage.clear('userPhoto');

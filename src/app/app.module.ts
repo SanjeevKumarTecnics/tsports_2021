@@ -13,11 +13,11 @@ import { ScoreBoardComponent } from './score-board/score-board.component';
 import { SelectCaptainComponent } from './select-captain/select-captain.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
-// import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-// import {
-//   GoogleLoginProvider,
-//   FacebookLoginProvider
-// } from 'angularx-social-login';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { SignoutComponent } from './signout/signout.component';
 import { MatListModule } from '@angular/material/list';
@@ -52,7 +52,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     HttpClientModule,
     MatTabsModule,
-    // SocialLoginModule,
+    SocialLoginModule,
     NgxWebstorageModule.forRoot(),
     MatListModule,
     MatDialogModule,
@@ -63,20 +63,20 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgxSpinnerModule 
   ],
   providers: [
-    // {
-    //   provide: 'SocialAuthServiceConfig',
-    //   useValue: {
-    //     autoLogin: false,
-    //     providers: [
-    //       {
-    //         id: GoogleLoginProvider.PROVIDER_ID,
-    //         provider: new GoogleLoginProvider(
-    //           '168301534173-8b21jhvkfd7asttnjah4fg65e1vh4sdh.apps.googleusercontent.com'
-    //         )
-    //       },
-    //     ]
-    //   } as SocialAuthServiceConfig,
-    // },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '177033085389-3ifnf4cv034aob0luabim0l3skosg1uh.apps.googleusercontent.com'
+            )
+          },
+        ]
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent]
 })

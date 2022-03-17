@@ -14,11 +14,7 @@ export class AppComponent implements OnInit{
     throw new Error('Method not implemented.');
   }
 
-  constructor(
-      private storage:LocalStorageService,
-      private router:Router,
-      // private authService: SocialAuthService
-    ) { }
+  constructor(private storage:LocalStorageService,private router:Router,private authService: SocialAuthService) { }
 
   loggedIn:any = this.storage.retrieve('isLogedIn');
 
