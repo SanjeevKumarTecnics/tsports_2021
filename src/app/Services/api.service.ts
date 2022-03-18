@@ -4,6 +4,7 @@ import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SocialAuthService } from 'angularx-social-login';
 import * as CryptoTS from 'crypto-ts';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,8 @@ export class ApiService {
     private http: HttpClient,
     private storage: LocalStorageService,
     private authService: SocialAuthService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {}
 
   baseUrl = 'http://tsports.tecnicslabs.com/';
@@ -183,11 +185,12 @@ export class ApiService {
   // for sign out
   signOut(): void {
     this.authService.signOut();
-    this.router.navigate(['/login']);
-    this.storage.clear('isLogedIn');
-    this.storage.clear('userPhoto');
-    this.storage.clear('userEmail');
-    this.storage.clear('matchID');
-    this.storage.clear('userID');
+    this.authenticationService.logOut();
+
+    // this.storage.clear('isLogedIn');
+    // this.storage.clear('userPhoto');
+    // this.storage.clear('userEmail');
+    // this.storage.clear('matchID');
+    // this.storage.clear('userID');
   }
 }

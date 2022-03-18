@@ -7,6 +7,7 @@ import {
   NavigationExtras,
 } from '@angular/router';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { AuthenticationService } from '../Services/authentication.service';
 
 @Component({
   selector: 'app-fantacy-team',
@@ -25,7 +26,8 @@ export class FantacyTeamComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private storage: LocalStorageService
+    private storage: LocalStorageService,
+    private authenticationSrvice: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class FantacyTeamComponent implements OnInit {
       .then((res) => {
         this.matchByDate = res;
         this.todayMatchDate = res[0].date;
-        var email = this.storage.retrieve('email');
+        var email = this.authenticationSrvice.userData.email;
         this.userName = email.split('@')[0];
         const length = res.length;
         for (let i = 0; i < length; i++) {

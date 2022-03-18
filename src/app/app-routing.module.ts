@@ -6,37 +6,45 @@ import { FantacyTeamComponent } from './fantacy-team/fantacy-team.component';
 import { LoginComponent } from './login/login.component';
 import { ScoreBoardComponent } from './score-board/score-board.component';
 import { PointsDetailsComponent } from './points-details/points-details.component';
+import { HomeGaurd } from './gurdAuthentication';
 
 const routes: Routes = [
-  { path: 'login', 
-    component: LoginComponent 
-  },
+  { path: 'login', component: LoginComponent },
   {
     path: 'create-team',
-    component: CreateTeamComponent
+    component: CreateTeamComponent,
+    canActivate: [HomeGaurd],
   },
-  { path: 'dashboard',
-    component: DashboardComponent
-  }
-  ,
-  { path: 'fantacy-team',
-    component: FantacyTeamComponent
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [HomeGaurd],
   },
-  { path: 'scoreboard',
-    component: ScoreBoardComponent
+  {
+    path: 'fantacy-team',
+    component: FantacyTeamComponent,
+    canActivate: [HomeGaurd],
   },
-  { path: 'pointsdetails',
-    component: PointsDetailsComponent
+  {
+    path: 'scoreboard',
+    component: ScoreBoardComponent,
+    canActivate: [HomeGaurd],
   },
-  { path: '', 
-    redirectTo: '/login', 
-    pathMatch: 'full' 
+  {
+    path: 'pointsdetails',
+    component: PointsDetailsComponent,
+    canActivate: [HomeGaurd],
   },
-  { path: '**', component: FantacyTeamComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: '**',
+    component: FantacyTeamComponent,
+    canActivate: [HomeGaurd],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
