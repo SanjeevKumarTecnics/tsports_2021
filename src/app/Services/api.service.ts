@@ -28,7 +28,7 @@ export class ApiService {
     private authenticationService: AuthenticationService
   ) {}
 
-  baseUrl = 'http://tsports.tecnicslabs.com/';
+  baseUrl = 'https://tsports.tecnicslabs.com/';
 
   async getPlayers(teamA: any, teamB: any) {
     return new Promise<any>((resolve, reject) => {
