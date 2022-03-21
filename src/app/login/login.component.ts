@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService } from 'angularx-social-login';
-import { SocialUser } from 'angularx-social-login';
-import {
-  FacebookLoginProvider,
-  GoogleLoginProvider,
-} from 'angularx-social-login';
-import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
+import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { UserModel } from '../dataModels.model';
 import { ApiService } from '../Services/api.service';
 import { AuthenticationService } from '../Services/authentication.service';
 
@@ -16,29 +11,48 @@ import { AuthenticationService } from '../Services/authentication.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  user: any;
-  loggedIn: boolean = false;
 
+  user: any;
+  user1: UserModel = new UserModel();
   constructor(
     private authService: SocialAuthService,
-    private storage: LocalStorageService,
     private router: Router,
     private apiService: ApiService,
     private authenticationService: AuthenticationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    const userEmail = sessionStorage.getItem("email")
+    if (userEmail != null) {
+      this.user1.authToken = sessionStorage.getItem("authToken");
+      this.user1.email = sessionStorage.getItem("email");
+      this.user1.name = sessionStorage.getItem("name");
+      this.user1.photoUrl = sessionStorage.getItem("photoUrl");
+      this.authenticationService.setUserData(this.user1);
+      console.log(this.user1)
+    }
     if (this.authenticationService.userData?.email) {
       this.fetchUserEmail(this.authenticationService.userData?.email);
     }
   }
 
-  logIn() {
+  logIn(): void {
     try {
       this.authService.authState.subscribe((user: any) => {
         this.user = user;
         if (user != null) {
-          this.authenticationService.setUserData(user);
+          this.user1.authToken = user.authToken;
+          this.user1.email = user.email;
+          this.user1.firstName = user.firstName;
+          this.user1.id = user.id;
+          this.user1.idToken = user.idToken;
+          this.user1.name = user.name;
+          this.user1.photoUrl = user.photoUrl;
+          this.authenticationService.setUserData(this.user1);
+          sessionStorage.setItem("authToken", user.authToken);
+          sessionStorage.setItem("email", user.email);
+          sessionStorage.setItem("name", user.name);
+          sessionStorage.setItem("photoUrl", user.photoUrl);
           if (user.authToken != null && user.email != null) {
             this.fetchUserEmail(user.email);
             return;

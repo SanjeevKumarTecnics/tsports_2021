@@ -36,6 +36,7 @@ export class AuthenticationService {
   logOut() {
     this.userDataSubject$.next(null);
     this.userIdSubject$.next(null);
+    sessionStorage.clear();
     this.router.navigate(['/']);
   }
 

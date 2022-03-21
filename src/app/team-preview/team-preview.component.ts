@@ -47,7 +47,7 @@ export class TeamPreviewComponent implements OnInit {
 
     var pushSelectedPlayers = {
       score: 0.0,
-      user: this.authenticationSrvice.userData.userId,
+      user: this.authenticationSrvice.userId,
       match: this.storage.retrieve('matchID')
         ? this.storage.retrieve('matchID')
         : this.apiService.matchId,
@@ -57,15 +57,16 @@ export class TeamPreviewComponent implements OnInit {
       players: players,
     };
 
-    // console.log(pushSelectedPlayers);
+    console.log(pushSelectedPlayers);
 
-    let response = await this.apiService
-      .postSelectPlayers(pushSelectedPlayers)
-      .then((res) => {
-        alert(
-          'Team Created Sucessfully ! Click on team Preview button To view your team'
-        );
-        this.router.navigate(['/fantacy-team']);
-      });
+  //   let response = await this.apiService
+  //     .postSelectPlayers(pushSelectedPlayers)
+  //     .then((res) => {
+  //       alert(
+  //         'Team Created Sucessfully ! Click on team Preview button To view your team'
+  //       );
+  //       this.router.navigate(['/fantacy-team']);
+  //     });
   }
+  // }
 }
