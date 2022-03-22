@@ -59,14 +59,13 @@ export class TeamPreviewComponent implements OnInit {
 
     console.log(pushSelectedPlayers);
 
-  //   let response = await this.apiService
-  //     .postSelectPlayers(pushSelectedPlayers)
-  //     .then((res) => {
-  //       alert(
-  //         'Team Created Sucessfully ! Click on team Preview button To view your team'
-  //       );
-  //       this.router.navigate(['/fantacy-team']);
-  //     });
+    let response = await this.apiService
+      .postSelectPlayers(pushSelectedPlayers)
+      .then((res) => {
+        alert(
+          'Team Created Sucessfully ! Click on team Preview button To view your team'
+        );
+        this.router.navigate(['/fantacy-team']);
+      });
   }
-  // }
 }
