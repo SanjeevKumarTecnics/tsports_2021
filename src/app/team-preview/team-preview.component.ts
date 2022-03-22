@@ -57,7 +57,7 @@ export class TeamPreviewComponent implements OnInit {
       players: players,
     };
 
-    console.log(pushSelectedPlayers);
+    // console.log(pushSelectedPlayers);
 
     let response = await this.apiService
       .postSelectPlayers(pushSelectedPlayers)

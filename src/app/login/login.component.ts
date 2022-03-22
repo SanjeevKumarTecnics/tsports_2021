@@ -11,7 +11,6 @@ import { AuthenticationService } from '../Services/authentication.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   user: any;
   user1: UserModel = new UserModel();
   constructor(
@@ -19,17 +18,17 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private apiService: ApiService,
     private authenticationService: AuthenticationService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    const userEmail = sessionStorage.getItem("email")
+    const userEmail = sessionStorage.getItem('email');
     if (userEmail != null) {
-      this.user1.authToken = sessionStorage.getItem("authToken");
-      this.user1.email = sessionStorage.getItem("email");
-      this.user1.name = sessionStorage.getItem("name");
-      this.user1.photoUrl = sessionStorage.getItem("photoUrl");
+      this.user1.authToken = sessionStorage.getItem('authToken');
+      this.user1.email = sessionStorage.getItem('email');
+      this.user1.name = sessionStorage.getItem('name');
+      this.user1.photoUrl = sessionStorage.getItem('photoUrl');
       this.authenticationService.setUserData(this.user1);
-      console.log(this.user1)
+      // console.log(this.user1)
     }
     if (this.authenticationService.userData?.email) {
       this.fetchUserEmail(this.authenticationService.userData?.email);
@@ -49,10 +48,10 @@ export class LoginComponent implements OnInit {
           this.user1.name = user.name;
           this.user1.photoUrl = user.photoUrl;
           this.authenticationService.setUserData(this.user1);
-          sessionStorage.setItem("authToken", user.authToken);
-          sessionStorage.setItem("email", user.email);
-          sessionStorage.setItem("name", user.name);
-          sessionStorage.setItem("photoUrl", user.photoUrl);
+          sessionStorage.setItem('authToken', user.authToken);
+          sessionStorage.setItem('email', user.email);
+          sessionStorage.setItem('name', user.name);
+          sessionStorage.setItem('photoUrl', user.photoUrl);
           if (user.authToken != null && user.email != null) {
             this.fetchUserEmail(user.email);
             return;
@@ -72,7 +71,7 @@ export class LoginComponent implements OnInit {
       var userId = res.id;
       this.authenticationService.setUserId(userId);
       if (userId) {
-        console.log(userId);
+        // console.log(userId);
         this.router.navigate(['/fantacy-team']);
       } else {
         alert('your not autorised person,please contact admin');
