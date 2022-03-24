@@ -1,41 +1,63 @@
-<mat-drawer-container autosize style="height: 100vh;">
-    <mat-drawer #drawer class="sidenav-items" mode="over" position="end">
-        <app-signout></app-signout>
-    </mat-drawer>
+<mat-drawer-container autosize style="height: 100vh">
+  <mat-drawer #drawer class="sidenav-items" mode="over" position="end">
+    <app-signout></app-signout>
+  </mat-drawer>
 
-    <div class="sidenav-content">
-        <div class="icon">
-            <button mat-icon-button class="menu_icon" mat-button (click)="drawer.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-        </div>
-       <!-- fantacy team data -->
-       <div class="create-team">
-            <div class="container">
-                <div class="create-team-inner">
-                    <img src="../../assets/images/logonew2-black.png" class="logo">
-                    <div class="fantasy" >
-                        <h3>Create Your Fantasy Team</h3>
-                        <h3>{{todayMatchDate}}</h3>
-                        <a class="btn btn-default view_point" routerLink="/pointsdetails">View Points Details</a>
-                    </div>  
-                    <ul class="list-main">
-                        <li *ngFor="let team of matchByDate;let i= index">
-                            <img src="{{team.teamA.team_logo}}" alt="">
-                            <h3> {{team.teamA.title}}</h3>
-                            <span class="vscls"></span>
-                            <img src="{{team.teamB.team_logo}}" alt="">
-                            <h3>{{team.teamB.title}}</h3>
-                            <h3 class="time">{{team.time}}</h3>
-                            <button type="button" class="btn btn-warning" *ngIf="matchExited[i]" (click)="gotoCreateTeam(team.teamA.title,team.teamB.title,team.mid)">Crate Team</button>
-                            <button type="button" class="btn btn-primary" *ngIf="!matchExited[i]" (click)="gotoDashboard(team.mid,userName)" >Team Preview</button>
-                            <!-- routerLink="/dashboard" -->
-                        </li>   
-                    </ul>
-                </div>   
-            </div>
-        </div>
-       <!-- fantacy team data -->
+  <div class="sidenav-content">
+    <div class="icon">
+      <button
+        mat-icon-button
+        class="menu_icon"
+        mat-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
     </div>
+    <!-- fantacy team data -->
+    <div class="create-team">
+      <div class="container">
+        <div class="create-team-inner">
+          <img src="../../assets/images/logonew2-black.png" class="logo" />
+          <div class="fantasy">
+            <h3>Create Your Fantasy Team</h3>
+            <h3>{{ todayMatchDate }}</h3>
+            <a class="btn btn-default view_point" routerLink="/pointsdetails"
+              >View Points Details</a
+            >
+          </div>
+          <ul class="list-main">
+            <li *ngFor="let team of matchByDate; let i = index">
+              <img src="{{ team.teamA.team_logo }}" alt="" />
+              <h3>{{ team.teamA.title }}</h3>
+              <span class="vscls"></span>
+              <img src="{{ team.teamB.team_logo }}" alt="" />
+              <h3>{{ team.teamB.title }}</h3>
+              <h3 class="time">{{ team.time }}</h3>
+              <button
+                type="button"
+                class="btn btn-warning"
+                *ngIf="matchExited[i]"
+                (click)="
+                  gotoCreateTeam(team.teamA.title, team.teamB.title, team.mid)
+                "
+              >
+                Create Team
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                *ngIf="!matchExited[i]"
+                (click)="gotoDashboard(team.mid, userName)"
+              >
+                Team Preview
+              </button>
+              <!-- routerLink="/dashboard" -->
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- fantacy team data -->
+  </div>
 </mat-drawer-container>
-
