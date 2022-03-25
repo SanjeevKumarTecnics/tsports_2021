@@ -1,94 +1,130 @@
-<mat-drawer-container autosize style="height: 100vh;">
-    <mat-drawer #drawer class="sidenav-items" mode="over" position="end">
-        <app-signout></app-signout>
-    </mat-drawer>
-    <div class="sidenav-content">
-        <div class="icon">
-            <button mat-icon-button class="menu_icon" mat-button (click)="drawer.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-        </div>
-        <!-- score board data -->
-        <mat-tab-group>
-            <mat-tab label="Today Matches">
-                <div class="yesterday_match">
-                    <div *ngFor = "let match of todaysDateWithFullDetails" [ngClass]="{'full_width': todaysDateWithFullDetails.length == 1}">
-                        <div>
-                            <h3>{{match.versus_description}} - {{match.date}} <strong>({{match.day}} - {{match.time}})</strong></h3>
-                            <div class="team_logo">
-                            <span>{{match.teamA.title}}</span>
-                            <span><img src="{{match.teamA.team_logo}}" alt=""></span>
-                            <span><img src="../../assets/images/vs.png" alt="" class="vs_img"></span>
-                            <span>{{match.teamB.title}}</span>
-                            <span><img src="{{match.teamB.team_logo}}" alt=""></span>
-                            </div>
-                        </div>
-                        <div class="participators">
-                            <h2>Participators</h2>
-                            <mat-card >
-                                <h3 *ngIf = "yesterdayMatchesScores.length == 0">{{noResult}}</h3>
-                                <h3 *ngIf = "match.resultAwait != 'R'">
-                                    {{match.resultAwait}}
-                                </h3>  
-                                <div *ngIf = "match.match_completed == true">
-                                    <table class="table">
-                                        <tr *ngFor = "let score of yesterdayMatchesScores; let i=index;">
-                                            <span *ngIf = "match.mid == score.match.mid">
-                                                <td>{{i+1}}) </td>
-                                                <td>{{score.user.username}}</td>
-                                                <td> <strong>{{score.score}}</strong></td>
-                                            </span>
-                                        </tr>
-                                    </table>
-                                </div>
-                            </mat-card>
-                        </div>
-                    </div>
-                </div>  
-            </mat-tab>
-            <mat-tab label="Completed Match">
-                <div *ngFor = "let match of allCompletedMatches">
-                    <mat-card class="completed_match" (click)="getMatchDetails(match.mid,match.versus_description)">
-                        <div>
-                            <h3>{{match.versus_description}}</h3>
-                            <p>stadium : {{match.stadium}}</p>
-                            <span>date : {{match.date}} <strong>({{match.day}})</strong></span>
-                        </div>
-                        <div class="team_logo">
-                            <span>{{match.teamA.title}}</span>
-                            <span><img src="{{match.teamA.team_logo}}" alt=""></span>
-                            <span><img src="../../assets/images/vs.png" alt="" class="vs_img"></span>
-                            <span>{{match.teamB.title}}</span>
-                            <span><img src="{{match.teamB.team_logo}}" alt=""></span>
-                        </div>
-                    </mat-card>
-                </div>
-            </mat-tab>
-            <mat-tab label="My Matches">
-                <div *ngFor = "let match of myMatches">
-                    <mat-card class="my_matches">
-                        <p>{{match.match.versus_description}}</p>
-                        <p>Stadium : {{match.match.stadium}}</p>
-                        <p>Date : {{match.match.date}} ({{match.match.day}})</p>
-                        <p>My Score : <strong class="score">{{match.score}}</strong></p>
-                    </mat-card>
-                </div>
-            </mat-tab>
-            <mat-tab label="Overall Scores">
-                <mat-card>
-                    <table class="overall_scores_table">
-                        <tr *ngFor = "let score of UserOverallScoreWithFullDetails; let i=index;">
-                            <td>{{i+1}}.</td>
-                            <td>{{score.user}}</td>
-                            <td><strong>{{score.overall_score}}</strong></td>
-                        </tr>
-                    </table>
-                </mat-card>
-            </mat-tab>
-        </mat-tab-group>
-        <!-- score board data -->
+<mat-drawer-container autosize style="height: 100vh">
+  <mat-drawer #drawer class="sidenav-items" mode="over" position="end">
+    <app-signout></app-signout>
+  </mat-drawer>
+  <div class="sidenav-content">
+    <div class="icon">
+      <button
+        mat-icon-button
+        class="menu_icon"
+        mat-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
     </div>
+    <!-- score board data -->
+    <mat-tab-group>
+      <mat-tab label="Today Matches">
+        <div class="yesterday_match">
+          <div
+            *ngFor="let match of todaysDateWithFullDetails"
+            [ngClass]="{ full_width: todaysDateWithFullDetails.length == 1 }"
+          >
+            <div>
+              <h3>
+                {{ match.versus_description }} - {{ match.date }}
+                <strong>({{ match.day }} - {{ match.time }})</strong>
+              </h3>
+              <div class="team_logo">
+                <span>{{ match.teamA.title }}</span>
+                <span><img src="{{ match.teamA.team_logo }}" alt="" /></span>
+                <span
+                  ><img src="../../assets/images/vs.png" alt="" class="vs_img"
+                /></span>
+                <span>{{ match.teamB.title }}</span>
+                <span><img src="{{ match.teamB.team_logo }}" alt="" /></span>
+              </div>
+            </div>
+            <div class="participators">
+              <h2>Participators</h2>
+              <mat-card>
+                <h3 *ngIf="yesterdayMatchesScores.length == 0">
+                  {{ noResult }}
+                </h3>
+                <h3 *ngIf="match.resultAwait != 'R'">
+                  {{ match.resultAwait }}
+                </h3>
+                <div *ngIf="match.match_completed == true">
+                  <table class="table">
+                    <tr
+                      *ngFor="
+                        let score of yesterdayMatchesScores;
+                        let i = index
+                      "
+                    >
+                      <span *ngIf="match.mid == score.match.mid">
+                        <td>{{ i + 1 }})</td>
+                        <td>{{ score.user.username }}</td>
+                        <td>
+                          <strong>{{ score.score }}</strong>
+                        </td>
+                      </span>
+                    </tr>
+                  </table>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab label="Completed Match">
+        <div *ngFor="let match of allCompletedMatches">
+          <mat-card
+            class="completed_match"
+            (click)="getMatchDetails(match.mid, match.versus_description)"
+          >
+            <div>
+              <h3>{{ match.versus_description }}</h3>
+              <p>stadium : {{ match.stadium }}</p>
+              <span
+                >date : {{ match.date }}
+                <strong>({{ match.day }})</strong></span
+              >
+            </div>
+            <div class="team_logo">
+              <span>{{ match.teamA.title }}</span>
+              <span><img src="{{ match.teamA.team_logo }}" alt="" /></span>
+              <span
+                ><img src="../../assets/images/vs.png" alt="" class="vs_img"
+              /></span>
+              <span>{{ match.teamB.title }}</span>
+              <span><img src="{{ match.teamB.team_logo }}" alt="" /></span>
+            </div>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="My Matches">
+        <div *ngFor="let match of myMatches">
+          <mat-card class="my_matches">
+            <p>{{ match.match.versus_description }}</p>
+            <p>Stadium : {{ match.match.stadium }}</p>
+            <p>Date : {{ match.match.date }} ({{ match.match.day }})</p>
+            <p>
+              My Score : <strong class="score">{{ match.score }}</strong>
+            </p>
+          </mat-card>
+        </div>
+      </mat-tab>
+      <mat-tab label="Overall Scores">
+        <mat-card>
+          <table class="overall_scores_table">
+            <tr
+              *ngFor="
+                let score of UserOverallScoreWithFullDetails;
+                let i = index
+              "
+            >
+              <td>{{ i + 1 }}.</td>
+              <td>{{ score.user.first_name }} {{ score.user.last_name }}</td>
+              <td>
+                <strong>{{ score.overall_score }}</strong>
+              </td>
+            </tr>
+          </table>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+    <!-- score board data -->
+  </div>
 </mat-drawer-container>
-
-
-
