@@ -17,6 +17,8 @@ import { AuthenticationService } from '../Services/authentication.service';
 export class FantacyTeamComponent implements OnInit {
   matchByDate: any = [];
 
+  liveMatches: any[] = [];
+
   matchExited: any = [];
 
   userName: any;
@@ -54,6 +56,12 @@ export class FantacyTeamComponent implements OnInit {
         }
       })
       .catch((err: any) => console.error(err));
+    this.apiService
+      .MatchesByTodaysDateWithFullDetails()
+      .then((results) => {
+        this.liveMatches = results;
+      })
+      .catch((err: any) => console.error(err));
   }
 
   gotoCreateTeam(teamA: any, teamB: any, matchId: any) {
@@ -74,5 +82,9 @@ export class FantacyTeamComponent implements OnInit {
       '/dashboard',
       { matchId: encmatchid, userName: encusername },
     ]);
+  }
+
+  goToLivePage(matchKey: string) {
+    window.location.href = '/live/match/' + matchKey;
   }
 }

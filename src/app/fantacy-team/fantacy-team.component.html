@@ -55,6 +55,42 @@
               <!-- routerLink="/dashboard" -->
             </li>
           </ul>
+          <!---Live matches with live score link-->
+          <h3>Live matches</h3>
+          <ul class="list-main">
+            <li *ngFor="let team of liveMatches; let i = index">
+              <img src="{{ team.teamA.team_logo }}" alt="" />
+              <h3>{{ team.teamA.title }}</h3>
+              <span class="vscls"></span>
+              <img src="{{ team.teamB.team_logo }}" alt="" />
+              <h3>{{ team.teamB.title }}</h3>
+              <h3 class="time">{{ team.time }}</h3>
+              <button
+                type="button"
+                class="btn btn-warning"
+                *ngIf="matchExited[i]"
+                (click)="
+                  gotoCreateTeam(team.teamA.title, team.teamB.title, team.mid)
+                "
+              >
+                Create Team
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                *ngIf="!matchExited[i]"
+                (click)="goToLivePage(team.match_key)"
+              >
+                Live Preview
+              </button>
+              <!-- <a
+                href="
+                  {{ '/live/match/' + team.match_key }}"
+                >Click for Live score.</a
+              > -->
+              <!-- routerLink="/dashboard" -->
+            </li>
+          </ul>
         </div>
       </div>
     </div>
