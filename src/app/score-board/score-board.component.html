@@ -25,6 +25,11 @@
               <h3>
                 {{ match.versus_description }} - {{ match.date }}
                 <strong>({{ match.day }} - {{ match.time }})</strong>
+                <a
+                  href="
+                  {{ '/live/match/' + match.match_key }}"
+                  >Click for Live score.</a
+                >
               </h3>
               <div class="team_logo">
                 <span>{{ match.teamA.title }}</span>
