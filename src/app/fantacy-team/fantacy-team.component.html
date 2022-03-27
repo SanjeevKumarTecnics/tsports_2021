@@ -65,24 +65,23 @@
               <img src="{{ team.teamB.team_logo }}" alt="" />
               <h3>{{ team.teamB.title }}</h3>
               <h3 class="time">{{ team.time }}</h3>
-              <button
-                type="button"
-                class="btn btn-warning"
-                *ngIf="matchExited[i]"
-                (click)="
-                  gotoCreateTeam(team.teamA.title, team.teamB.title, team.mid)
-                "
-              >
-                Create Team
-              </button>
-              <button
-                type="button"
-                class="btn btn-danger"
-                *ngIf="!matchExited[i]"
-                (click)="goToLivePage(team.match_key)"
-              >
-                Live Preview
-              </button>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-danger"
+                  (click)="goToLivePage(team.match_key)"
+                >
+                  Live
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary"
+                  (click)="gotoDashboard(team.mid, userName)"
+                >
+                  Team
+                </button>
+              </div>
+
               <!-- <a
                 href="
                   {{ '/live/match/' + team.match_key }}"
