@@ -30,6 +30,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { IndividualMatchScoreComponent } from './individual-match-score/individual-match-score.component';
 import { PointsDetailsComponent } from './points-details/points-details.component';
 import { NgxSpinnerModule } from "ngx-spinner"; 
+import { HeaderInterceptor } from './Services/api.httpinterceptor';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
   providers: [
     {
       provide: 'SocialAuthServiceConfig',
+      // multi: true,
       useValue: {
         autoLogin: false,
         providers: [
@@ -77,6 +79,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
         ]
       } as SocialAuthServiceConfig,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
