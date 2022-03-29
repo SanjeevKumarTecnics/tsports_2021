@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.2.9",
     "@angular/router": "~11.2.9",
     "angularx-social-login": "^3.5.7",
-    "bootstrap": "^3.4.1",
+    "bootstrap": "^5.0",
     "crypto-ts": "^1.0.2",
     "jquery": "^3.6.0",
     "jwt-decode": "^3.1.2",
