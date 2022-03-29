@@ -4,6 +4,7 @@ import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 import { UserModel } from '../dataModels.model';
 import { ApiService } from '../Services/api.service';
 import { AuthenticationService } from '../Services/authentication.service';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-login',
@@ -21,12 +22,12 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const userEmail = sessionStorage.getItem('email');
+    const userEmail = localStorage.getItem('email');
     if (userEmail != null) {
-      this.user1.authToken = sessionStorage.getItem('authToken');
-      this.user1.email = sessionStorage.getItem('email');
-      this.user1.name = sessionStorage.getItem('name');
-      this.user1.photoUrl = sessionStorage.getItem('photoUrl');
+      this.user1.authToken = localStorage.getItem('authToken');
+      this.user1.email = localStorage.getItem('email');
+      this.user1.name = localStorage.getItem('name');
+      this.user1.photoUrl = localStorage.getItem('photoUrl');
       this.authenticationService.setUserData(this.user1);
       // console.log(this.user1)
     }
@@ -40,6 +41,7 @@ export class LoginComponent implements OnInit {
       this.authService.authState.subscribe((user: any) => {
         this.user = user;
         if (user != null) {
+          console.log("user", JSON.stringify(user));
           this.user1.authToken = user.authToken;
           this.user1.email = user.email;
           this.user1.firstName = user.firstName;
@@ -48,10 +50,13 @@ export class LoginComponent implements OnInit {
           this.user1.name = user.name;
           this.user1.photoUrl = user.photoUrl;
           this.authenticationService.setUserData(this.user1);
-          sessionStorage.setItem('authToken', user.authToken);
-          sessionStorage.setItem('email', user.email);
-          sessionStorage.setItem('name', user.name);
-          sessionStorage.setItem('photoUrl', user.photoUrl);
+          const decodedToken: any = jwt_decode(user.idToken);
+          const idTokenObj = JSON.stringify({'token': user.idToken, 'expire_at': decodedToken.exp});
+          localStorage.setItem('authToken', user.authToken);
+          localStorage.setItem('email', user.email);
+          localStorage.setItem('name', user.name);
+          localStorage.setItem('photoUrl', user.photoUrl);
+          localStorage.setItem('idToken',idTokenObj);
           if (user.authToken != null && user.email != null) {
             this.fetchUserEmail(user.email);
             return;
