@@ -47,7 +47,6 @@ export class TeamPreviewComponent implements OnInit {
 
     var pushSelectedPlayers = {
       score: 0.0,
-      user: this.authenticationSrvice.userId,
       match: this.storage.retrieve('matchID')
         ? this.storage.retrieve('matchID')
         : this.apiService.matchId,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { Routes } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -13,10 +13,13 @@ import { ScoreBoardComponent } from './score-board/score-board.component';
 import { SelectCaptainComponent } from './select-captain/select-captain.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
 import {
   GoogleLoginProvider,
-  FacebookLoginProvider
+  FacebookLoginProvider,
 } from 'angularx-social-login';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { SignoutComponent } from './signout/signout.component';
@@ -24,13 +27,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TeamPreviewComponent } from './team-preview/team-preview.component';
 import { MatCardModule } from '@angular/material/card';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { IndividualMatchScoreComponent } from './individual-match-score/individual-match-score.component';
 import { PointsDetailsComponent } from './points-details/points-details.component';
-import { NgxSpinnerModule } from "ngx-spinner"; 
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { HeaderInterceptor } from './Services/api.httpinterceptor';
+import { AuthenticationService } from './Services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,7 @@ import { HeaderInterceptor } from './Services/api.httpinterceptor';
     SignoutComponent,
     TeamPreviewComponent,
     IndividualMatchScoreComponent,
-    PointsDetailsComponent
+    PointsDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ import { HeaderInterceptor } from './Services/api.httpinterceptor';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    NgxSpinnerModule 
+    NgxSpinnerModule,
   ],
   providers: [
     {
@@ -74,13 +78,18 @@ import { HeaderInterceptor } from './Services/api.httpinterceptor';
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
               '177033085389-3ifnf4cv034aob0luabim0l3skosg1uh.apps.googleusercontent.com'
-            )
+            ),
           },
-        ]
+        ],
       } as SocialAuthServiceConfig,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeaderInterceptor,
+      multi: true,
+      deps: [AuthenticationService, Router],
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

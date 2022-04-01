@@ -18,7 +18,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [HomeGaurd],
+    // canActivate: [HomeGaurd],
   },
   {
     path: 'fantacy-team',
@@ -33,7 +33,7 @@ const routes: Routes = [
   {
     path: 'pointsdetails',
     component: PointsDetailsComponent,
-    canActivate: [HomeGaurd],
+    // canActivate: [HomeGaurd],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {

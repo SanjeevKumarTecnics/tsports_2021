@@ -39,6 +39,7 @@ export class FantacyTeamComponent implements OnInit {
         this.matchByDate = res;
         this.todayMatchDate = res[0].date;
         var email = this.authenticationSrvice.userData.email;
+        console.log('email', email);
         this.userName = email.split('@')[0];
         const length = res.length;
         for (let i = 0; i < length; i++) {

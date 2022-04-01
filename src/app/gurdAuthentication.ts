@@ -19,15 +19,12 @@ export class HomeGaurd implements CanActivate {
     _next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const currentUserData = this.authenticationService.userData;
-    if (currentUserData?.authToken == null) {
-      this.router.navigate(['/']);
-      return false;
-    } else {
-      return true;
+    if (!this.authenticationService.isAuthenticated) {
+      alert('Session expired, please login again.');
+      this.router.navigate(['/login'], {
+        queryParams: { returnUrl: state.url },
+      });
     }
-    // not logged in so redirect to login page with the return url
-    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-    return false;
+    return true;
   }
 }

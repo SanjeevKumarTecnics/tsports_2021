@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { SocialAuthService } from 'angularx-social-login';
 import * as CryptoTS from 'crypto-ts';
 import { AuthenticationService } from './authentication.service';
+import { UserService } from './user-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,9 @@ export class ApiService {
     private authenticationService: AuthenticationService
   ) {}
 
-  baseUrl = 'https://tsports.tecnicslabs.com/';
+  // baseUrl = 'https://tsports.tecnicslabs.com/';
+
+  baseUrl = 'http://localhost:8000/';
 
   async getPlayers(teamA: any, teamB: any) {
     return new Promise<any>((resolve, reject) => {
@@ -95,11 +98,7 @@ export class ApiService {
   async userAlredyExistedInMatch(userName: any, matchId: any) {
     return new Promise<any>((resolve, reject) => {
       let response = this.http.get(
-        this.baseUrl +
-          'api/DreamTeamByUIDandMatchID/?user=' +
-          userName +
-          '&match=' +
-          matchId
+        this.baseUrl + 'api/DreamTeamByUIDandMatchID/?' + '&match=' + matchId
       );
       response.subscribe((data) => {
         resolve(data);
