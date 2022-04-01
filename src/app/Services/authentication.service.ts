@@ -106,7 +106,6 @@ export class AuthenticationService {
   logOut(): void {
     window.localStorage.clear();
     this.authenticated$.next(false);
-    this.router.navigate(['/']);
   }
 
   login(): void {
