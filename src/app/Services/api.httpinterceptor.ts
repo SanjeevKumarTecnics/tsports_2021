@@ -24,7 +24,7 @@ export class HeaderInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // Read from LS\
     console.log('HeaderInterceptor', httpRequest);
-    if (!httpRequest.url.startsWith('http://localhost:8000/api/')) {
+    if (!httpRequest.url.startsWith('https://tsports.tecnicslabs.com')) {
       return next.handle(httpRequest.clone());
     }
 
